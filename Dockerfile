@@ -16,5 +16,8 @@ RUN apt-get update && apt-get install -y \
 
 COPY start_teamspeak.sh /
 COPY start_xvfb.sh /
+COPY entrypoint.sh /
 
 RUN mkdir teamspeak/ && cd /teamspeak && curl http://dl.4players.de/ts/releases/3.1.3/TeamSpeak3-Client-linux_amd64-3.1.3.run -o teamspeak.run && chmod u+x teamspeak.run && (sleep 3 && echo "q" && sleep 3 && echo "y") | ./teamspeak.run
+
+ENTRYPOINT ["/entrypoint.sh"]
